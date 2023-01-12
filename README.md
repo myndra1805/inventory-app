@@ -1,8 +1,36 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+<img src="https://github.com/myndra1805/inventory-app/blob/main/public/images/logo.png?raw=true" width="100" alt="Logo Inventory App">
+</p>
 
 ## Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project is a website-based storage information system. This system functions to manage the goods owned. There are three user roles in this system:
+1. Super Admin
+   - Login
+   - Dashboard
+   - CRUD product
+   - CRUD product type
+   - CRUD product unit
+   - CRUD account admin and warehouse
+   - CRUD suppliers
+   - CRUD transactions
+2. Admin
+   - Login
+   - Dashboard
+   - CRUD product
+   - CRUD product type
+   - CRUD product unit
+   - CRUD account warehouse
+   - CRUD suppliers
+   - Create, update, dan read transactions
+3. Warehouse
+   - Login
+   - Dashboard
+   - CRUD product
+   - CRUD product type
+   - CRUD product unit
+   - CRUD suppliers
+   - Create dan read transactions
 
 ## Tech Stack
 
