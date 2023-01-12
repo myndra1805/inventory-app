@@ -1,5 +1,8 @@
+<div align="center">
+    <h1>INVENTORY APP</h1>
+</div>
 <p align="center">
-<img src="https://github.com/myndra1805/inventory-app/blob/main/public/images/logo.png?raw=true" width="100" alt="Logo Inventory App">
+<img src="https://github.com/myndra1805/inventory-app/blob/main/public/images/logo.png?raw=true" alt="Logo Inventory App">
 </p>
 
 ## Description
