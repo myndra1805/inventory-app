@@ -1,0 +1,13 @@
+import "./bootstrap";
+// import "bootstrap-icons/font/bootstrap-icons.css";
+import "@mdi/font/css/materialdesignicons.min.css";
+import "../scss/app.scss";
+import * as bootstrap from "bootstrap";
+import Alpine from "alpinejs";
+import Swal from "sweetalert2";
+import Chart from "chart.js/auto";
+window.Alpine = Alpine;
+window.bootstrap = bootstrap;
+window.Swal = Swal;
+window.Chart = Chart;
+Alpine.start();
