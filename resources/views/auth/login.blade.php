@@ -1,50 +1,51 @@
 <x-guest-layout>
     @section('title', 'Login')
-    <!-- Session Status -->
-
-    <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="/login">
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox"
-                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                href="{{ route('password.request') }}">
-                {{ __('Forgot your password?') }}
-            </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+        <div class="container">
+            <div class="row justify-content-center align-items-center" style="height: 100vh">
+                <div class="col-12 col-md-7 col-lg-4">
+                    <div class="text-center">
+                        <i class="mdi mdi-account-circle text-primary display-1"></i>
+                        <h3 class="text-primary">ACCOUNT LOGIN</h3>
+                    </div>
+                    <div class="card card-body border-0 shadow">
+                        <div class="my-1">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                name="email" value="{{old('email')}}">
+                            @error('email')
+                            <div id="email" class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="my-1">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                id="password" name="password" value="{{old('password')}}">
+                            @error('password')
+                            <div id="password" class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="row mt-3 align-items-center">
+                            <div class="col-6">
+                                <button class="btn btn-primary">
+                                    <i class="mdi mdi-login"></i>
+                                    Login
+                                </button>
+                            </div>
+                            <div class="col-6 text-end">
+                                <a href="">Forget password ?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 

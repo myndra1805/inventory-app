@@ -55,11 +55,30 @@ array_splice($navs, 4, 0, [
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
+<style>
+    .sidenav {
+        z-index: 10000;
+    }
+
+    @media screen and (max-width: 991px) {
+        .sidenav {
+            animation: showMenu 400ms ease forwards;
+            left: -100%
+        }
+
+        @keyframes showMenu {
+            to {
+                left: 0;
+            }
+        }
+    }
+</style>
+
 <body>
     <div class="container-fluid" style="">
-        <div class="row" style="min-height: 100vh">
+        <div class="row" style="min-height: 100vh; position: relative;">
             {{-- aside --}}
-            <div class="col-auto p-2 sticky-top" style="width: 16rem; height: 100vh;">
+            <div class="col-auto p-2 sticky-top sidenav d-none d-lg-block" style="width: 16rem; height: 100vh;">
                 <aside class="bg-dark h-100 rounded-4 shadow" style="overflow: auto">
 
                     {{-- logo --}}
@@ -90,37 +109,39 @@ array_splice($navs, 4, 0, [
             <div class="col px-2">
                 {{-- navbar --}}
                 <div class="bg-white pb-2 sticky-top">
-                    <nav class="shadow navbar navbar-expand-lg navbar-light bg-white rounded"
+                    <nav class="shadow navbar navbar-expand-lg navbar-light bg-white rounded pt-0"
                         style="top: 10px; z-index: 100">
                         <div class="container">
-                            <div>
-                                {{$breadcrumbs}}
-                            </div>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div>
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle text-decoration-none d-flex align-items-center"
-                                        aria-current="page" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="mdi mdi-account-circle text-primary" style="font-size: 40px"></i>
-                                        <div>
-                                            <small class="d-block text-muted fw-semibold">
-                                                {{Auth::user()->name}}
-                                            </small>
-                                            <small class="d-block text-muted fw-semibold"
-                                                style="font-size: 12px">{{Auth::user()->getRoleNames()[0]}}</small>
-                                        </div>
-                                    </a>
+                            <div class="row align-items-center justify-content-between flex-wrap w-100">
+                                <div class="col-12 col-lg-6 order-2 order-lg-1 mt-2 mt-lg-0">
+                                    {{$breadcrumbs}}
+                                </div>
+                                <div
+                                    class="col-12 col-lg-6 d-flex align-items-center order-1 order-lg-2 justify-content-between justify-content-lg-end pe-0">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle text-decoration-none d-flex align-items-center"
+                                            aria-current="page" href="#" role="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="mdi mdi-account-circle text-primary" style="font-size: 40px"></i>
+                                            <div class="d-none d-md-block">
+                                                <small class="d-block text-muted fw-semibold">
+                                                    {{Auth::user()->name}}
+                                                </small>
+                                                <small class="d-block text-muted fw-semibold"
+                                                    style="font-size: 12px">{{Auth::user()->getRoleNames()[0]}}</small>
+                                            </div>
+                                        </a>
 
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                                        <li><a class="dropdown-item" href="/logout" onclick="logout(event)">Logout</a>
-                                        </li>
-                                    </ul>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                                            <li><a class="dropdown-item" href="/logout"
+                                                    onclick="logout(event)">Logout</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button class="navbar-toggler" type="button" onclick="toggleButton(event)">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -130,13 +151,13 @@ array_splice($navs, 4, 0, [
 
 
                 {{-- main --}}
-                <main class="mt-3 d-flex flex-column" style="min-height: 86vh">
+                <main class="mt-3 d-flex flex-column" style="min-height: 84vh">
                     <div style="flex: 1 0 auto;">
                         {{$slot}}
                     </div>
                     {{-- footer --}}
                     <footer class="pt-3 pb-2 mt-3">
-                        <p class="m-0">
+                        <p class="m-0 text-center text-lg-start">
                             Copyright &copy; {{now()->year}} InventoryApp made with
                             <i class="mdi mdi-heart text-danger"></i>
                             by
@@ -169,6 +190,14 @@ array_splice($navs, 4, 0, [
     function logout(event) {
         event.preventDefault()
         document.querySelector('#form-logout').submit()
+    }
+
+    function toggleButton(event) {
+        const sidenav =  document.querySelector(".sidenav")
+        sidenav.classList.toggle('d-block')
+        sidenav.classList.toggle('d-none')
+        sidenav.classList.toggle('position-fixed')
+        sidenav.classList.toggle('sticky-top')
     }
 </script>
 

@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             @foreach ($results as $i => $result)
-            <div class="col-12 col-md-6 col-lg-3 ps-0 {{$i === count($results) - 1 ? 'pe-0' : 'pe-3'}}">
+            <div class="col-12 col-md-6 col-lg-3 py-3 py-lg-0 px-0 px-md-3">
                 <div class="card border-0 shadow">
                     <div class="card-body">
                         <div class="row justify-content-between">
@@ -44,17 +44,17 @@
             </div>
             @endforeach
         </div>
-        <div class="row mt-5">
-            <div class="col-12 col-md-8 ps-0">
+        <div class="row mt-5 h-100">
+            <div class="col-12 col-lg-8 py-3 h-100">
                 <div class="card border-0 shadow">
                     <div class="card-body">
                         <canvas id="transactions" width="100%"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4 pe-0" style="height: 100%">
-                <div class="card border-0 shadow h-100">
-                    <div class="card-body" style="height: 372px">
+            <div class="col-12 col-lg-4 py-3">
+                <div class="card border-0 shadow" style="height: 100%">
+                    <div class="card-body d-flex justify-content-center h-100">
                         <canvas id="total-transactions" width="100%"></canvas>
                     </div>
                 </div>

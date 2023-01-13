@@ -37,15 +37,19 @@
           <p class="m-0">{{$user->getRoleNames()[0]}}</p>
           <p class="m-0">{{$user->email}}</p>
         </div>
-        <div class="d-flex justify-content-center mt-3">
-          <button class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalUpdateProfile">
-            <i class="mdi mdi-pencil"></i>
-            Update Profile
-          </button>
-          <button class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalChangePassword">
-            <i class="mdi mdi-lock"></i>
-            Change Password
-          </button>
+        <div class="row justify-content-center mt-3">
+          <div class="col-12 col-md-6 text-center text-md-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateProfile">
+              <i class="mdi mdi-pencil"></i>
+              Update Profile
+            </button>
+          </div>
+          <div class="col-12 col-md-6 text-center text-md-start">
+            <button class="btn btn-primary mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#modalChangePassword">
+              <i class="mdi mdi-lock"></i>
+              Change Password
+            </button>
+          </div>
         </div>
       </div>
     </div>

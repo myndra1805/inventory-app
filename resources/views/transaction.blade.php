@@ -1,4 +1,12 @@
 <x-app-layout>
+  <style>
+    @media screen and (max-width: 991px) {
+      #container-table {
+        overflow: auto;
+      }
+    }
+  </style>
+
   @section('title', 'Transactions')
   <x-slot name="breadcrumbs">
     <nav aria-label="breadcrumb">
@@ -41,23 +49,23 @@
           </div>
         </div>
       </div>
-      <table class="table w-100 table-striped yajra-datatable">
-        <thead>
-          <tr>
-            <th class="bg-primary text-white" style="width: 20px">No</th>
-            <th class="bg-primary text-white" style="width: 150px">Code</th>
-            <th class="bg-primary text-white" style="width: 200px">Status</th>
-            <th class="bg-primary text-white">Created At</th>
-            <th class="bg-primary text-white">Updated At</th>
-            <th class="bg-primary text-white text-center"
-              style="width: @role('super-admin') 240px @elserole('admin') 155px @elserole('warehouse') 100px @endrole">
-              Action</th>
-            <th class="bg-primary text-white" style="width: 20px"></th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <div id="container-table">
+        <table class="table w-100 table-striped yajra-datatable nowrap">
+          <thead>
+            <tr>
+              <th class="bg-primary text-white">No</th>
+              <th class="bg-primary text-white">Code</th>
+              <th class="bg-primary text-white">Status</th>
+              <th class="bg-primary text-white">Created At</th>
+              <th class="bg-primary text-white">Updated At</th>
+              <th class="bg-primary text-white text-center"
+                style="width: @role('super-admin') 240px @elserole('admin') 155px @elserole('warehouse') 100px @endrole">
+                Action</th>
+              <th class="bg-primary text-white"></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
     </div>
   </div>
   {{-- end content --}}
@@ -79,23 +87,25 @@
           serverSide: true,
           ajax: "/transactions/read",
           columns: [
-              {data: 'DT_RowIndex', name: 'DT_RowIndex', class: 'fw-bold'},
-              {data: 'transaction_code', name: 'transaction_code'},
+              {data: 'DT_RowIndex', name: 'DT_RowIndex', class: 'fw-bold', width: '20px'},
+              {data: 'transaction_code', name: 'transaction_code', width: '120px'},
               {data: 'status', name: 'status'},
-              {data: 'created_at', name: 'created_at'},
-              {data: 'updated_at', name: 'updated_at'},
+              {data: 'created_at', name: 'created_at', width: '120px'},
+              {data: 'updated_at', name: 'updated_at', width: '120px'},
               {
                   data: 'action', 
                   name: 'action', 
                   orderable: false, 
-                  searchable: false
+                  searchable: false,
+                  width: '240px'
               },
               {
                 className: 'dt-control',
                 orderable: false,
                 data: null,
                 defaultContent: '',
-                searchable: false
+                searchable: false,
+                width: '20px'
               },
           ]
       });

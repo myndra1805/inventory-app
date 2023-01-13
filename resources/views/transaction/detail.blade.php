@@ -36,32 +36,35 @@ $total = 0;
   <div class="card w-100 shadow border-0">
     <div class="card-body">
       <h3 class="text-primary">Transaction Details</h3>
-      <table class="table mt-4">
-        <tr>
-          <th class="bg-primary text-white ">No</th>
-          <th class="bg-primary text-white ">Name</th>
-          <th class="bg-primary text-white ">Amount</th>
-          <th class="bg-primary text-white ">Unit Price</th>
-          <th class="bg-primary text-white ">Total Price</th>
-        </tr>
-        @foreach ($transaction->products as $i => $product)
-        <tr>
-          <th>{{$i + 1}}</th>
-          <td>{{$product->name}}</td>
-          <td>{{$product->pivot->amount}}</td>
-          <td>{{'Rp. ' . number_format($product->price, 2, ',', '.')}}</td>
-          <td>{{'Rp. ' . number_format($product->price * $product->pivot->amount, 2, ',', '.')}}</td>
-        </tr>
-        @php
-        $total += ($product->price * $product->pivot->amount);
-        @endphp
-        @endforeach
-        <tr>
-          <td colspan="3" class="border-bottom-0"></td>
-          <th class="bg-primary text-white">Total</th>
-          <th class="bg-primary text-white">{{'Rp. ' . number_format($total, 2, ',', '.')}}</th>
-        </tr>
-      </table>
+      <div class="table-responsive">
+        <table class="table mt-4 w-100">
+          <tr>
+            <th class="bg-primary text-white">No</th>
+            <th class="bg-primary text-white">Name</th>
+            <th class="bg-primary text-white">Amount</th>
+            <th class="bg-primary text-white">Unit Price</th>
+            <th class="bg-primary text-white">Total Price</th>
+          </tr>
+          @foreach ($transaction->products as $i => $product)
+          <tr>
+            <th>{{$i + 1}}</th>
+            <td>{{$product->name}}</td>
+            <td>{{$product->pivot->amount}}</td>
+            <td>{{'Rp. ' . number_format($product->price, 2, ',', '.')}}</td>
+            <td>{{'Rp. ' . number_format($product->price * $product->pivot->amount, 2, ',',
+              '.')}}</td>
+          </tr>
+          @php
+          $total += ($product->price * $product->pivot->amount);
+          @endphp
+          @endforeach
+          <tr>
+            <td colspan="3" class="border-bottom-0"></td>
+            <th class="bg-primary text-white">Total</th>
+            <th class="bg-primary text-white">{{'Rp. ' . number_format($total, 2, ',', '.')}}</th>
+          </tr>
+        </table>
+      </div>
 
       <table>
         <tr>
@@ -87,7 +90,7 @@ $total = 0;
           <td class="px-2 py-1">: {{$transaction->note}}</td>
         </tr>
       </table>
-      <div class="text-end">
+      <div class="text-end mt-3">
         @role(['super-admin', 'admin'])
         <a href="/transactions/update/{{$transaction->id}}" class="btn btn-success">
           <i class="mdi mdi-pencil"></i>

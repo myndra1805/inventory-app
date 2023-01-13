@@ -1,4 +1,12 @@
 <x-app-layout>
+  <style>
+    @media screen and (max-width: 991px) {
+      #container-table {
+        overflow: auto;
+      }
+    }
+  </style>
+
   @section('title', 'Types')
   <x-slot name="breadcrumbs">
     <nav aria-label="breadcrumb">
@@ -41,19 +49,21 @@
           </div>
         </div>
       </div>
-      <table class="table w-100 table-striped yajra-datatable">
-        <thead>
-          <tr>
-            <th class="bg-primary text-white" style="width: 20px">No</th>
-            <th class="bg-primary text-white" style="width: 200px">Name</th>
-            <th class="bg-primary text-white">Created At</th>
-            <th class="bg-primary text-white">Updated At</th>
-            <th class="bg-primary text-white text-center" style="width: 165px">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <div id="container-table">
+        <table class="table w-100 table-striped yajra-datatable nowrap">
+          <thead>
+            <tr>
+              <th class="bg-primary text-white">No</th>
+              <th class="bg-primary text-white">Name</th>
+              <th class="bg-primary text-white">Created At</th>
+              <th class="bg-primary text-white">Updated At</th>
+              <th class="bg-primary text-white text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   {{-- end content --}}
@@ -165,17 +175,19 @@
       const table = $('.yajra-datatable').DataTable({
           processing: true,
           serverSide: true,
+          responsive: true,
           ajax: "/types/read",
           columns: [
-              {data: 'DT_RowIndex', name: 'DT_RowIndex', class: 'fw-bold'},
+              {data: 'DT_RowIndex', name: 'DT_RowIndex', class: 'fw-bold', width: '20px'},
               {data: 'name', name: 'name'},
-              {data: 'created_at', name: 'created_at'},
-              {data: 'updated_at', name: 'updated_at'},
+              {data: 'created_at', name: 'created_at', width: '120px'},
+              {data: 'updated_at', name: 'updated_at', width: '120px'},
               {
                   data: 'action', 
                   name: 'action', 
                   orderable: false, 
-                  searchable: false
+                  searchable: false,
+                  width: '170px'
               },
           ]
       });

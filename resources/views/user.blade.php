@@ -1,4 +1,12 @@
 <x-app-layout>
+  <style>
+    @media screen and (max-width: 991px) {
+      #container-table {
+        overflow: auto;
+      }
+    }
+  </style>
+
   @section('title', 'Users')
   <x-slot name="breadcrumbs">
     <nav aria-label="breadcrumb">
@@ -41,21 +49,23 @@
           </div>
         </div>
       </div>
-      <table class="table w-100 table-striped yajra-datatable">
-        <thead>
-          <tr>
-            <th class="bg-primary text-white" style="width: 20px">No</th>
-            <th class="bg-primary text-white" style="width: 100px">Email</th>
-            <th class="bg-primary text-white" style="width: 150px">Name</th>
-            <th class="bg-primary text-white" style="width: 100px">Role</th>
-            <th class="bg-primary text-white">Created At</th>
-            <th class="bg-primary text-white">Updated At</th>
-            <th class="bg-primary text-white text-center" style="width: 165px">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <div id="container-table">
+        <table class="table w-100 table-striped yajra-datatable nowrap">
+          <thead>
+            <tr>
+              <th class="bg-primary text-white" style="width: 20px">No</th>
+              <th class="bg-primary text-white" style="width: 100px">Email</th>
+              <th class="bg-primary text-white" style="width: 150px">Name</th>
+              <th class="bg-primary text-white" style="width: 100px">Role</th>
+              <th class="bg-primary text-white">Created At</th>
+              <th class="bg-primary text-white">Updated At</th>
+              <th class="bg-primary text-white text-center" style="width: 165px">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   {{-- end content --}}
@@ -218,6 +228,7 @@
       const table = $('.yajra-datatable').DataTable({
           processing: true,
           serverSide: true,
+          responsive: true,
           ajax: "/users/read",
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex', class: 'fw-bold'},

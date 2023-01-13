@@ -1,4 +1,12 @@
 <x-app-layout>
+  <style>
+    @media screen and (max-width: 991px) {
+      #container-table {
+        overflow: auto;
+      }
+    }
+  </style>
+
   @section('title', 'Products')
   <x-slot name="breadcrumbs">
     <nav aria-label="breadcrumb">
@@ -41,21 +49,21 @@
           </div>
         </div>
       </div>
-      <table class="table w-100 table-striped yajra-datatable">
-        <thead>
-          <tr>
-            <th class="bg-primary text-white" style="width: 20px">No</th>
-            <th class="bg-primary text-white" style="width: 100px">Code</th>
-            <th class="bg-primary text-white" style="width: 150px">Name</th>
-            <th class="bg-primary text-white">Created At</th>
-            <th class="bg-primary text-white">Updated At</th>
-            <th class="bg-primary text-white text-center" style="width: 165px">Action</th>
-            <th class="bg-primary text-white" style="width: 20px"></th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <div id="container-table">
+        <table class="table w-100 table-striped yajra-datatable nowrap">
+          <thead>
+            <tr>
+              <th class="bg-primary text-white">No</th>
+              <th class="bg-primary text-white">Code</th>
+              <th class="bg-primary text-white">Name</th>
+              <th class="bg-primary text-white">Created At</th>
+              <th class="bg-primary text-white">Updated At</th>
+              <th class="bg-primary text-white text-center">Action</th>
+              <th class="bg-primary text-white"></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
     </div>
   </div>
   {{-- end content --}}
@@ -256,25 +264,28 @@
       const table = $('.yajra-datatable').DataTable({
           processing: true,
           serverSide: true,
+          responsive: true,
           ajax: "/products/read",
           columns: [
-              {data: 'DT_RowIndex', name: 'DT_RowIndex', class: 'fw-bold'},
-              {data: 'product_code', name: 'product_code'},
+              {data: 'DT_RowIndex', name: 'DT_RowIndex', class: 'fw-bold', width: "20px"},
+              {data: 'product_code', name: 'product_code', width: "120px"},
               {data: 'name', name: 'name'},
-              {data: 'created_at', name: 'created_at'},
-              {data: 'updated_at', name: 'updated_at'},
+              {data: 'created_at', name: 'created_at', width: "120px"},
+              {data: 'updated_at', name: 'updated_at', width: "120px"},
               {
                   data: 'action', 
                   name: 'action', 
                   orderable: false, 
-                  searchable: false
+                  searchable: false,
+                  width: "170px"
               },
               {
                 className: 'dt-control',
                 orderable: false,
                 data: null,
                 defaultContent: '',
-                searchable: false
+                searchable: false,
+                width: "20px"
               },
           ]
       });
